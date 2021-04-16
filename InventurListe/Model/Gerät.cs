@@ -9,6 +9,7 @@ namespace InventurListe.Model
     public class Gerät
     {
         [Key]
+        [RegularExpression(@"CCB.{8}", ErrorMessage = "Wird als PK verwendet! Muss mit den Großbuchstaben CCB anfangen, gefolgt von 8 Zeichen")]
         public string InventurNr { get; set; }
 
         [Required]
@@ -22,6 +23,7 @@ namespace InventurListe.Model
         public string MAC { get; set; }
 
         [Required]
+        [RegularExpression(@"\d\d\d\.\d\d\d\.\d\d\d\.\d\d\d", ErrorMessage = "Die IP enthält 4 Blöcke von je 3 Zahlen. Die Blöcke müssen durch einen Punkt voneinander getrennt werden")]
         public string IP { get; set; }
 
         [Required]
