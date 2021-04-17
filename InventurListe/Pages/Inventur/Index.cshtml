@@ -1,0 +1,98 @@
+﻿@page
+@model InventurListe.Pages.Inventur.IndexModel
+@{
+}
+
+<div class="container row p-0 m-0">
+    <div class="col-9">
+        <h2 class="text-info">Book List</h2>
+    </div>
+    <div class="col-3">
+        <a asp-page="Create" class="btn btn-info form-control text-white">Neuer Eintrag</a>
+    </div>
+
+
+    <diiv class="col-10 border p-3 mt-3">
+        <form method="post">
+            @if(Model.Gerät.Count() > 0)
+            {
+                <table class="table table-striped border">
+                    <tr class="table-secondary">
+                        <th>
+                            <label asp-for="Gerät.FirstOrDefault().InventurNr"></label>
+                        </th>
+                        <th>
+                            <label asp-for="Gerät.FirstOrDefault().MAC"></label>
+                        </th>
+                        <th>
+                            <label asp-for="Gerät.FirstOrDefault().IP"></label>
+                        </th>
+                        <th>
+                            <label asp-for="Gerät.FirstOrDefault().Name"></label>
+                        </th>
+                        <th>
+                            <label asp-for="Gerät.FirstOrDefault().VianovaNr"></label>
+                        </th>
+                        <!--
+    <th> -- GeräteTypName
+        <label asp-for="Gerät.FirstOrDefault().Name"></label>
+    </th>
+    <th> -- HausName
+        <label asp-for="Gerät.FirstOrDefault().Name"></label>
+    </th>
+    <th> -- BetriebssystemName
+        <label asp-for="Gerät.FirstOrDefault().Name"></label>
+    </th>
+    <th> -- AbteilungName
+        <label asp-for="Gerät.FirstOrDefault().Name"></label>
+    </th>
+    //-->
+                    </tr>
+                    @foreach(var item in Model.Gerät)
+                    {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(m => item.InventurNr)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.MAC)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.IP)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.VianovaNr)
+                    </td>
+                    <!--
+    <td> -- GeräteTypName
+        @Html.DisplayFor(m => item.Name)
+    </td>
+    <td> -- HausName
+        @Html.DisplayFor(m => item.Name)
+    </td>
+    <td> -- OsName
+        @Html.DisplayFor(m => item.Name)
+    </td>
+    <td> -- AbteilungName
+        @Html.DisplayFor(m => item.Name)
+    </td>
+        -->
+                    <td>
+                        <button class="btn btn-danger btn-sm">Löschen</button>
+                        <a class="btn btn-success btn-sm text-white">Ändern</a>
+                    </td>
+                </tr>
+                    }
+
+                </table>
+            }
+            else
+            {
+                <p>Keine Geräte zum Anzeigen verfügbar</p>
+            }
+        </form>
+    </diiv>
+</div>
