@@ -30,11 +30,16 @@ namespace InventurListe.Model
         public string Name { get; set; }
 
         [Required]
-        public int OsIs { get; set; }
+        public int BetriebssystemId { get; set; }
 
         public int VianovaNr { get; set; }
 
         [Required]
         public int AbteilungId { get; set; }
+
+        public virtual GeräteTyp GeräteTyp { get; set; }
+        public virtual Haus Haus { get; set; }
+        public virtual Abteilung Abteilung { get; set; }
+        public virtual Betriebssystem Betriebssystem { get; set; }
     }
 }
