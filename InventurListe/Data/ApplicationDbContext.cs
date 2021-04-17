@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using InventurListe.Model;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,5 +13,15 @@ namespace InventurListe.Data
             : base(options)
         {
         }
+
+        public DbSet<Abteilung> Abteilung { get; set; }
+
+        public DbSet<Betriebssystem> Betriebssystem { get; set; }
+        public DbSet<Gerät> Gerät { get; set; }
+        public DbSet<GeräteTyp> GeräteTyp { get; set; }
+        public DbSet<Haus> Haus { get; set; }
+        public DbSet<Raum> Raum { get; set; }
+        public DbSet<Standort> Standort { get; set; }
+        public DbSet<Stockwerk> Stockwerk { get; set; }
     }
 }

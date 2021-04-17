@@ -15,7 +15,7 @@ namespace InventurListe.Model
         public int StandortId { get; set; }
 
         [Required]
-        public int HausId { get; set; }
+        public int RaumId { get; set; }
 
         [Required]
         public int StockId { get; set; }
