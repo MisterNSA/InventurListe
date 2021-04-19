@@ -18,18 +18,16 @@ namespace InventurListe.Model
         [Required]
         public int HausId { get; set; }
 
-        [Required]
+        
         [RegularExpression(@"[A-F0-9]{12}", ErrorMessage = "Eine MAC-Adresse darf nur Großbuchstaben von A-F und Zahlen von 0-9 enthalten. Die Länge muss 12 Zeichen betragen")]
         public string MAC { get; set; }
 
-        [Required]
         [RegularExpression(@"\d\d\d\.\d\d\d\.\d\d\d\.\d\d\d", ErrorMessage = "Die IP enthält 4 Blöcke von je 3 Zahlen. Die Blöcke müssen durch einen Punkt voneinander getrennt werden")]
         public string IP { get; set; }
 
         [Required]
         public string Name { get; set; }
 
-        [Required]
         public int BetriebssystemId { get; set; }
 
         public int VianovaNr { get; set; }
