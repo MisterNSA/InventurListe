@@ -35,6 +35,8 @@ namespace InventurListe.Model
         [Required]
         public int AbteilungId { get; set; }
 
+        // Verknüpfung mit Untertabellem
+
         public virtual GeräteTyp GeräteTyp { get; set; }
         public virtual Haus Haus { get; set; }
         public virtual Abteilung Abteilung { get; set; }
