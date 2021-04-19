@@ -14,7 +14,7 @@
 
     <diiv class="col-10 border p-3 mt-3">
         <form method="post">
-            @if(Model.Gerät.Count() > 0)
+            @if (Model.Gerät.Count() > 0)
             {
                 <table class="table table-striped border">
                     <tr class="table-secondary">
@@ -34,46 +34,46 @@
                             <label asp-for="Gerät.FirstOrDefault().VianovaNr"></label>
                         </th>
                         <!--
-    <th>
-        <label asp-for="Gerät.FirstOrDefault().GeräteTypName"></label>
-    </th>
-    -->
+                        <th>
+                            <label asp-for="Gerät.FirstOrDefault().GeräteTypName"></label>
+                        </th>
+                        -->
                         <!--
-    <th> -- HausName
-        <label asp-for="Gerät.FirstOrDefault().Name"></label>
-    </th>
-    <th> -- BetriebssystemName
-        <label asp-for="Gerät.FirstOrDefault().Name"></label>
-    </th>
-    <th> -- AbteilungName
-        <label asp-for="Gerät.FirstOrDefault().Name"></label>
-    </th>
-    //-->
+                        <th> -- HausName
+                            <label asp-for="Gerät.FirstOrDefault().Name"></label>
+                        </th>
+                        <th> -- BetriebssystemName
+                            <label asp-for="Gerät.FirstOrDefault().Name"></label>
+                        </th>
+                        <th> -- AbteilungName
+                            <label asp-for="Gerät.FirstOrDefault().Name"></label>
+                        </th>
+                        //-->
                     </tr>
-                    @foreach(var item in Model.Gerät)
+                    @foreach (var item in Model.Gerät)
                     {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(m => item.InventurNr)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(m => item.MAC)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(m => item.IP)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(m => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(m => item.VianovaNr)
-                    </td>
-                    
-                    <td>
-                        <button class="btn btn-danger btn-sm">Löschen</button>
-                        <a class="btn btn-success btn-sm text-white">Ändern</a>
-                    </td>
-                </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(m => item.InventurNr)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.MAC)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.IP)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.VianovaNr)
+                            </td>
+
+                            <td>
+                                <button class="btn btn-danger btn-sm">Löschen</button>
+                                <a class="btn btn-success btn-sm text-white">Ändern</a>
+                            </td>
+                        </tr>
                     }
 
                 </table>
@@ -85,3 +85,7 @@
         </form>
     </diiv>
 </div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
