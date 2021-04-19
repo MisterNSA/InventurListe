@@ -10,17 +10,17 @@ using Microsoft.EntityFrameworkCore;
 
 namespace InventurListe.Pages.Inventur
 {
-    public class CreateModel : PageModel
+    public class StandorteModel : PageModel
     {
         private readonly ApplicationDbContext _db;
 
-        public CreateModel(ApplicationDbContext db)
+        public StandorteModel(ApplicationDbContext db)
         {
             _db = db;
         }
 
         [BindProperty]
-        public Gerät Gerät { get; set; }
+        public Standort Standort { get; set; }
         public void OnGet()
         {
         }
@@ -29,7 +29,7 @@ namespace InventurListe.Pages.Inventur
         {
             if (ModelState.IsValid)
             {
-                await _db.Gerät.AddAsync(Gerät);
+                await _db.Standort.AddAsync(Standort);
                 await _db.SaveChangesAsync();
                 return RedirectToPage("Index");
             }

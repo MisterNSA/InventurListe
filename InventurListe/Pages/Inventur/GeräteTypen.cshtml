@@ -1,0 +1,40 @@
+﻿@page
+@model InventurListe.Pages.Inventur.GeräteTypenModel
+@{
+}
+
+<br />
+<h2 class="text-info">Neuer GeräteTyp</h2>
+<br />
+
+<div class="border container" style="padding:30px;">
+    <form method="post">
+        <!--Name-->
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="GeräteTyp.Modell"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="GeräteTyp.Modell" class="form-control" />
+            </div>
+        </div>
+        <!--Typ PC, Laptop, Drucker etc.-->
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="GeräteTyp.GerätTyp"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="GeräteTyp.GerätTyp" class="form-control" />
+            </div>
+        </div>
+        <!--Buttons-->
+        <div class="form-group row">
+            <div class="col-3 offset-3">
+                <input type="submit" value="Erstellen" class="btn btn-primary form-control" />
+            </div>
+            <div class="col-3">
+                <a asp-page="Index" class="btn btn-success form-control">Zur Übersicht</a>
+            </div>
+        </div>
+    </form>
+</div>

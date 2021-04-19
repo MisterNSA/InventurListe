@@ -2,3 +2,102 @@
 @model InventurListe.Pages.Inventur.CreateModel
 @{
 }
+
+<br />
+<h2 class="text-info">Neues Gerät</h2>
+<br />
+
+<div class="border container" style="padding:30px;">
+    <form method="post">
+        <!--InventurNr-->
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Gerät.InventurNr"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Gerät.InventurNr" class="form-control" />
+            </div>
+        </div>
+        <!--GeräteTypId-->
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Gerät.GeräteTypId">Geräte-Typ</label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Gerät.GeräteTypId" class="form-control" />
+            </div>
+        </div>
+        <!--HausId-->
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Gerät.HausId">Haus</label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Gerät.HausId" class="form-control" />
+            </div>
+        </div>
+        <!--MAC-->
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Gerät.MAC"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Gerät.MAC" class="form-control" />
+            </div>
+        </div>
+        <!--IP-->
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Gerät.IP"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Gerät.IP" class="form-control" />
+            </div>
+        </div>
+        <!--Name-->
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Gerät.Name"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Gerät.Name" class="form-control" />
+            </div>
+        </div>
+        <!--BetriebssystemId-->
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Gerät.BetriebssystemId">Betriebssystem</label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Gerät.BetriebssystemId" class="form-control" />
+            </div>
+        </div>
+        <!--VianovaNr-->
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Gerät.VianovaNr"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Gerät.VianovaNr" class="form-control" />
+            </div>
+        </div>
+        <!--AbteilungId-->
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Gerät.AbteilungId">Abteilung</label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Gerät.AbteilungId" class="form-control" />
+            </div>
+        </div>
+        <!--Buttons-->
+        <div class="form-group row">
+            <div class="col-3 offset-3">
+                <input type="submit" value="Erstellen" class="btn btn-primary form-control" />
+            </div>
+            <div class="col-3">
+                <a asp-page="Index" class="btn btn-success form-control">Zur Übersicht</a>
+            </div>
+        </div>
+    </form>
+</div>

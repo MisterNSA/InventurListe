@@ -10,17 +10,17 @@ using Microsoft.EntityFrameworkCore;
 
 namespace InventurListe.Pages.Inventur
 {
-    public class CreateModel : PageModel
+    public class RÃ¤umeModel : PageModel
     {
         private readonly ApplicationDbContext _db;
 
-        public CreateModel(ApplicationDbContext db)
+        public RÃ¤umeModel(ApplicationDbContext db)
         {
             _db = db;
         }
 
         [BindProperty]
-        public Gerät Gerät { get; set; }
+        public Raum Raum { get; set; }
         public void OnGet()
         {
         }
@@ -29,7 +29,7 @@ namespace InventurListe.Pages.Inventur
         {
             if (ModelState.IsValid)
             {
-                await _db.Gerät.AddAsync(Gerät);
+                await _db.Raum.AddAsync(Raum);
                 await _db.SaveChangesAsync();
                 return RedirectToPage("Index");
             }

@@ -34,9 +34,11 @@
                             <label asp-for="Gerät.FirstOrDefault().VianovaNr"></label>
                         </th>
                         <!--
-    <th> -- GeräteTypName
-        <label asp-for="Gerät.FirstOrDefault().Name"></label>
+    <th>
+        <label asp-for="Gerät.FirstOrDefault().GeräteTypName"></label>
     </th>
+    -->
+                        <!--
     <th> -- HausName
         <label asp-for="Gerät.FirstOrDefault().Name"></label>
     </th>
@@ -66,20 +68,7 @@
                     <td>
                         @Html.DisplayFor(m => item.VianovaNr)
                     </td>
-                    <!--
-    <td> -- GeräteTypName
-        @Html.DisplayFor(m => item.Name)
-    </td>
-    <td> -- HausName
-        @Html.DisplayFor(m => item.Name)
-    </td>
-    <td> -- OsName
-        @Html.DisplayFor(m => item.Name)
-    </td>
-    <td> -- AbteilungName
-        @Html.DisplayFor(m => item.Name)
-    </td>
-        -->
+                    
                     <td>
                         <button class="btn btn-danger btn-sm">Löschen</button>
                         <a class="btn btn-success btn-sm text-white">Ändern</a>

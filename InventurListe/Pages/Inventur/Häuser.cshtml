@@ -1,0 +1,58 @@
+﻿@page
+@model InventurListe.Pages.Inventur.HäuserModel
+@{
+}
+
+<br />
+<h2 class="text-info">Neues Haus</h2>
+<br />
+
+<div class="border container" style="padding:30px;">
+    <form method="post">
+        <!--Name-->
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Haus.HausName">Bezeichung des Hauses</label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Haus.HausName" class="form-control" />
+            </div>
+        </div>
+        <!--Raum-->
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Haus.RaumId">Raum</label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Haus.RaumId" class="form-control" />
+            </div>
+        </div>
+        <!--Standort-->
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Haus.StandortId">Standort</label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Haus.StandortId" class="form-control" />
+            </div>
+        </div>
+        <!--Stock-->
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Haus.StockId">Stockwerk</label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Haus.StockId" class="form-control" />
+            </div>
+        </div>
+        <!--Buttons-->
+        <div class="form-group row">
+            <div class="col-3 offset-3">
+                <input type="submit" value="Erstellen" class="btn btn-primary form-control" />
+            </div>
+            <div class="col-3">
+                <a asp-page="Index" class="btn btn-success form-control">Zur Übersicht</a>
+            </div>
+        </div>
+    </form>
+</div>

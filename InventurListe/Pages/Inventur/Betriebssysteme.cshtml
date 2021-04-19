@@ -1,0 +1,31 @@
+﻿@page
+@model InventurListe.Pages.Inventur.BetriebssystemModel
+@{
+}
+
+<br />
+<h2 class="text-info">Neues Betriebssystem</h2>
+<br />
+
+<div class="border container" style="padding:30px;">
+    <form method="post">
+        <!--Name-->
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Betriebssystem.Name"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Betriebssystem.Name" class="form-control" />
+            </div>
+        </div>
+        <!--Buttons-->
+        <div class="form-group row">
+            <div class="col-3 offset-3">
+                <input type="submit" value="Erstellen" class="btn btn-primary form-control" />
+            </div>
+            <div class="col-3">
+                <a asp-page="Index" class="btn btn-success form-control">Zur Übersicht</a>
+            </div>
+        </div>
+    </form>
+</div>
