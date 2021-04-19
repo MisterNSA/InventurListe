@@ -9,6 +9,7 @@
 
 <div class="border container" style="padding:30px;">
     <form method="post">
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
         <!--Name-->
         <div class="form-group row">
             <div class="col-3">
@@ -17,6 +18,7 @@
             <div class="col-6">
                 <input asp-for="GeräteTyp.Modell" class="form-control" />
             </div>
+            <span asp-validation-for="GeräteTyp.Modell" class="text-danger"></span>
         </div>
         <!--Typ PC, Laptop, Drucker etc.-->
         <div class="form-group row">
@@ -26,6 +28,7 @@
             <div class="col-6">
                 <input asp-for="GeräteTyp.GerätTyp" class="form-control" />
             </div>
+            <span asp-validation-for="GeräteTyp.GerätTyp" class="text-danger"></span>
         </div>
         <!--Buttons-->
         <div class="form-group row">

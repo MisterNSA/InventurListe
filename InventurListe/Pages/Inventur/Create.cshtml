@@ -9,6 +9,7 @@
 
 <div class="border container" style="padding:30px;">
     <form method="post">
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
         <!--InventurNr-->
         <div class="form-group row">
             <div class="col-3">
@@ -17,6 +18,7 @@
             <div class="col-6">
                 <input asp-for="Gerät.InventurNr" class="form-control" />
             </div>
+            <span asp-validation-for="Gerät.InventurNr" class="text-danger"></span>
         </div>
         <!--GeräteTypId-->
         <div class="form-group row">
@@ -26,6 +28,7 @@
             <div class="col-6">
                 <input asp-for="Gerät.GeräteTypId" class="form-control" />
             </div>
+            <span asp-validation-for="Gerät.GeräteTypId" class="text-danger"></span>
         </div>
         <!--HausId-->
         <div class="form-group row">
@@ -35,6 +38,7 @@
             <div class="col-6">
                 <input asp-for="Gerät.HausId" class="form-control" />
             </div>
+            <span asp-validation-for="Gerät.HausId" class="text-danger"></span>
         </div>
         <!--MAC-->
         <div class="form-group row">
@@ -44,6 +48,7 @@
             <div class="col-6">
                 <input asp-for="Gerät.MAC" class="form-control" />
             </div>
+            <span asp-validation-for="Gerät.MAC" class="text-danger"></span>
         </div>
         <!--IP-->
         <div class="form-group row">
@@ -53,6 +58,7 @@
             <div class="col-6">
                 <input asp-for="Gerät.IP" class="form-control" />
             </div>
+            <span asp-validation-for="Gerät.IP" class="text-danger"></span>
         </div>
         <!--Name-->
         <div class="form-group row">
@@ -62,6 +68,7 @@
             <div class="col-6">
                 <input asp-for="Gerät.Name" class="form-control" />
             </div>
+            <span asp-validation-for="Gerät.Name" class="text-danger"></span>
         </div>
         <!--BetriebssystemId-->
         <div class="form-group row">
@@ -71,6 +78,7 @@
             <div class="col-6">
                 <input asp-for="Gerät.BetriebssystemId" class="form-control" />
             </div>
+            <span asp-validation-for="Gerät.BetriebssystemId" class="text-danger"></span>
         </div>
         <!--VianovaNr-->
         <div class="form-group row">
@@ -80,6 +88,7 @@
             <div class="col-6">
                 <input asp-for="Gerät.VianovaNr" class="form-control" />
             </div>
+            <span asp-validation-for="Gerät.VianovaNr" class="text-danger"></span>
         </div>
         <!--AbteilungId-->
         <div class="form-group row">
@@ -89,6 +98,7 @@
             <div class="col-6">
                 <input asp-for="Gerät.AbteilungId" class="form-control" />
             </div>
+            <span asp-validation-for="Gerät.AbteilungId" class="text-danger"></span>
         </div>
         <!--Buttons-->
         <div class="form-group row">

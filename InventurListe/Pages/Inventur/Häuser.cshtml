@@ -9,6 +9,7 @@
 
 <div class="border container" style="padding:30px;">
     <form method="post">
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
         <!--Name-->
         <div class="form-group row">
             <div class="col-3">
@@ -17,6 +18,7 @@
             <div class="col-6">
                 <input asp-for="Haus.HausName" class="form-control" />
             </div>
+            <span asp-validation-for="Haus.HausName" class="text-danger"></span>
         </div>
         <!--Raum-->
         <div class="form-group row">
@@ -26,6 +28,7 @@
             <div class="col-6">
                 <input asp-for="Haus.RaumId" class="form-control" />
             </div>
+            <span asp-validation-for="Haus.RaumId" class="text-danger"></span>
         </div>
         <!--Standort-->
         <div class="form-group row">
@@ -35,6 +38,7 @@
             <div class="col-6">
                 <input asp-for="Haus.StandortId" class="form-control" />
             </div>
+            <span asp-validation-for="Haus.StandortId" class="text-danger"></span>
         </div>
         <!--Stock-->
         <div class="form-group row">
@@ -44,6 +48,7 @@
             <div class="col-6">
                 <input asp-for="Haus.StockId" class="form-control" />
             </div>
+            <span asp-validation-for="Haus.StockId" class="text-danger"></span>
         </div>
         <!--Buttons-->
         <div class="form-group row">
