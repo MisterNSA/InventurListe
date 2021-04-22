@@ -7,17 +7,8 @@
 
 <div class="border container" style="padding:30px;">
     <form method="post">
+        <input type="hidden" asp-for="Gerät.InventurNr" />
         <div class="text-danger" asp-validation-summary="ModelOnly"></div>
-        <!--InventurNr-->
-        <div class="form-group row">
-            <div class="col-3">
-                <label asp-for="Gerät.InventurNr"></label>
-            </div>
-            <div class="col-6">
-                <input asp-for="Gerät.InventurNr" class="form-control" />
-            </div>
-            <span asp-validation-for="Gerät.InventurNr" class="text-danger"></span>
-        </div>
         <!--GeräteTypId-->
         <div class="form-group row">
             <div class="col-3">

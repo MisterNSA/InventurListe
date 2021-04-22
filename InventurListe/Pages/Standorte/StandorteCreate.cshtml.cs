@@ -31,7 +31,7 @@ namespace InventurListe.Pages.Inventur
             {
                 await _db.Standort.AddAsync(Standort);
                 await _db.SaveChangesAsync();
-                return RedirectToPage("Index");
+                return RedirectToPage("StandorteIndex");
             }
             else
             {

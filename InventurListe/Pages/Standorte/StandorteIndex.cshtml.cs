@@ -8,34 +8,34 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
-namespace InventurListe.Pages.Inventur
+namespace InventurListe.Pages.Standorte
 {
-    public class IndexModel : PageModel
+    public class StandorteIndexModel : PageModel
     {
         private readonly ApplicationDbContext _db;
 
-        public IndexModel(ApplicationDbContext db)
+        public StandorteIndexModel(ApplicationDbContext db)
         {
             _db = db;
         }
 
-        public IEnumerable<Gerät> Gerät { get; set; }
+        public IEnumerable<Standort> Standort { get; set; }
         public async Task OnGet()
         {
-            Gerät = await _db.Gerät.ToListAsync();
+            Standort = await _db.Standort.ToListAsync();
         }
 
-        public async Task<IActionResult> OnPostDelete(string InventurNr)
+        public async Task<IActionResult> OnPostDelete(int Id)
         {
-            var Gerät = await _db.Gerät.FindAsync(InventurNr);
-            if (Gerät == null)
+            var Standort = await _db.Standort.FindAsync(Id);
+            if (Standort == null)
             {
                 return NotFound();
             }
-            _db.Gerät.Remove(Gerät);
+            _db.Standort.Remove(Standort);
             await _db.SaveChangesAsync();
 
-            return RedirectToPage("Index");
+            return RedirectToPage("StandorteIndex");
         }
     }
 }

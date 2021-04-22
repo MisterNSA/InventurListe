@@ -5,7 +5,7 @@
 
 <div class="container row p-0 m-0">
     <div class="col-9">
-        <h2 class="text-info">Book List</h2>
+        <h2 class="text-info">Geräte Liste</h2>
     </div>
     <div class="col-3">
         <a asp-page="Create" class="btn btn-info form-control text-white">Neuer Eintrag</a>
@@ -70,7 +70,7 @@
                             </td>
 
                             <td>
-                                <button class="btn btn-danger btn-sm">Löschen</button>
+                                <button asp-page-handler="Delete" asp-route-InventurNr="@item.InventurNr" onclick="return confirm('Soll der Eintrag wirklich gelöscht werden?')" class="btn btn-danger btn-sm">Löschen</button>
                                 <a asp-page="Edit" asp-route-InventurNr="@item.InventurNr" class="btn btn-success btn-sm text-white">Ändern</a>
                             </td>
                         </tr>
