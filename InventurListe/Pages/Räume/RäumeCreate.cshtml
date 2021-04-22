@@ -1,10 +1,11 @@
 ﻿@page
-@model InventurListe.Pages.Inventur.StockwerkeModel
+@model InventurListe.Pages.Räume.RäumeCreateModel
 @{
 }
 
+
 <br />
-<h2 class="text-info">Neues Stockwerk</h2>
+<h2 class="text-info">Neuer Raum</h2>
 <br />
 
 <div class="border container" style="padding:30px;">
@@ -13,12 +14,12 @@
         <!--Name-->
         <div class="form-group row">
             <div class="col-3">
-                <label asp-for="Stockwerk.StockName">Bezeichnung des Stockwerks</label>
+                <label asp-for="Raum.RaumName">Name des Raums</label>
             </div>
             <div class="col-6">
-                <input asp-for="Stockwerk.StockName" class="form-control" />
+                <input asp-for="Raum.RaumName" class="form-control" />
             </div>
-            <span asp-validation-for="Stockwerk.StockName" class="text-danger"></span>
+            <span asp-validation-for="Raum.RaumName" class="text-danger"></span>
         </div>
         <!--Buttons-->
         <div class="form-group row">
@@ -26,7 +27,7 @@
                 <input type="submit" value="Erstellen" class="btn btn-primary form-control" />
             </div>
             <div class="col-3">
-                <a asp-page="Index" class="btn btn-success form-control">Zur Übersicht</a>
+                <a asp-page="RäumeIndex" class="btn btn-success form-control">Zur Übersicht</a>
             </div>
         </div>
     </form>

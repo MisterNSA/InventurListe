@@ -8,19 +8,19 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
-namespace InventurListe.Pages.Inventur
+namespace InventurListe.Pages.GeräteTypen
 {
-    public class BetriebssystemModel : PageModel
+    public class GeräteTypenCreateModel : PageModel
     {
         private readonly ApplicationDbContext _db;
 
-        public BetriebssystemModel(ApplicationDbContext db)
+        public GeräteTypenCreateModel(ApplicationDbContext db)
         {
             _db = db;
         }
 
         [BindProperty]
-        public Betriebssystem Betriebssystem { get; set; }
+        public GeräteTyp GeräteTyp { get; set; }
         public void OnGet()
         {
         }
@@ -29,9 +29,9 @@ namespace InventurListe.Pages.Inventur
         {
             if (ModelState.IsValid)
             {
-                await _db.Betriebssystem.AddAsync(Betriebssystem);
+                await _db.GeräteTyp.AddAsync(GeräteTyp);
                 await _db.SaveChangesAsync();
-                return RedirectToPage("Index");
+                return RedirectToPage("GeräteTypenIndex");
             }
             else
             {

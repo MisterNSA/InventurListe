@@ -1,0 +1,51 @@
+﻿@page
+@model InventurListe.Pages.GeräteTypen.GeräteTypenEditModel
+@{
+}
+
+
+
+
+<br />
+<h2 class="text-info">Geräte Typen Bearbeiten</h2>
+<br />
+
+<div class="border container" style="padding:30px;">
+    <form method="post">
+        <input type="hidden" asp-for="GeräteTyp.Id" />
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        <!--GerätTyp-->
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="GeräteTyp.GerätTyp">Geräte-Typ</label>
+            </div>
+            <div class="col-6">
+                <input asp-for="GeräteTyp.GerätTyp" class="form-control" />
+            </div>
+            <span asp-validation-for="GeräteTyp.GerätTyp" class="text-danger"></span>
+        </div>
+        <!--Modell-->
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="GeräteTyp.Modell">Modell</label>
+            </div>
+            <div class="col-6">
+                <input asp-for="GeräteTyp.Modell" class="form-control" />
+            </div>
+            <span asp-validation-for="GeräteTyp.Modell" class="text-danger"></span>
+        </div>
+        <!--Buttons-->
+        <div class="form-group row">
+            <div class="col-3 offset-3">
+                <input type="submit" value="Update" class="btn btn-primary form-control" />
+            </div>
+            <div class="col-3">
+                <a asp-page="GeräteTypenIndex" class="btn btn-success form-control">Zur Übersicht</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

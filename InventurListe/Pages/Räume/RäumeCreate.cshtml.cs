@@ -8,19 +8,19 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
-namespace InventurListe.Pages.Inventur
+namespace InventurListe.Pages.Räume
 {
-    public class GeräteTypenModel : PageModel
+    public class RäumeCreateModel : PageModel
     {
         private readonly ApplicationDbContext _db;
 
-        public GeräteTypenModel(ApplicationDbContext db)
+        public RäumeCreateModel(ApplicationDbContext db)
         {
             _db = db;
         }
 
         [BindProperty]
-        public GeräteTyp GeräteTyp { get; set; }
+        public Raum Raum { get; set; }
         public void OnGet()
         {
         }
@@ -29,9 +29,9 @@ namespace InventurListe.Pages.Inventur
         {
             if (ModelState.IsValid)
             {
-                await _db.GeräteTyp.AddAsync(GeräteTyp);
+                await _db.Raum.AddAsync(Raum);
                 await _db.SaveChangesAsync();
-                return RedirectToPage("Index");
+                return RedirectToPage("RäumeIndex");
             }
             else
             {

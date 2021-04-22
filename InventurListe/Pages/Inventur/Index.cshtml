@@ -34,21 +34,22 @@
                             <label asp-for="Gerät.FirstOrDefault().VianovaNr"></label>
                         </th>
                         <!--
-                        <th>
-                            <label asp-for="Gerät.FirstOrDefault().GeräteTypName"></label>
-                        </th>
-                        -->
-                        <!--
-                        <th> -- HausName
-                            <label asp-for="Gerät.FirstOrDefault().Name"></label>
-                        </th>
-                        <th> -- BetriebssystemName
-                            <label asp-for="Gerät.FirstOrDefault().Name"></label>
-                        </th>
-                        <th> -- AbteilungName
-                            <label asp-for="Gerät.FirstOrDefault().Name"></label>
-                        </th>
-                        //-->
+    <th>
+        <label asp-for="Gerät.FirstOrDefault().GeräteTypName"></label>
+    </th>
+    <th> -- HausName
+        <label asp-for="Gerät.FirstOrDefault().Name"></label>
+    </th>
+    <th> -- BetriebssystemName
+        <label asp-for="Gerät.FirstOrDefault().Name"></label>
+    </th>
+    <th> -- AbteilungName
+        <label asp-for="Gerät.FirstOrDefault().Name"></label>
+    </th>
+        <th> -- AbteilungName
+        <label>Buttons</label>
+    </th>
+    //-->
                     </tr>
                     @foreach (var item in Model.Gerät)
                     {

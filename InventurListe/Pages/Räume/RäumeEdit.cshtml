@@ -1,32 +1,35 @@
 ﻿@page
-@model InventurListe.Pages.Inventur.BetriebssystemModel
+@model InventurListe.Pages.Räume.RäumeEditModel
 @{
 }
 
+
+
 <br />
-<h2 class="text-info">Neues Betriebssystem</h2>
+<h2 class="text-info">Räume Bearbeiten</h2>
 <br />
 
 <div class="border container" style="padding:30px;">
     <form method="post">
+        <input type="hidden" asp-for="Raum.Id" />
         <div class="text-danger" asp-validation-summary="ModelOnly"></div>
-        <!--Name-->
+        <!--RaumName-->
         <div class="form-group row">
             <div class="col-3">
-                <label asp-for="Betriebssystem.Name"></label>
+                <label asp-for="Raum.RaumName">Name des Raums</label>
             </div>
             <div class="col-6">
-                <input asp-for="Betriebssystem.Name" class="form-control" />
+                <input asp-for="Raum.RaumName" class="form-control" />
             </div>
-            <span asp-validation-for="Betriebssystem.Name" class="text-danger"></span>
+            <span asp-validation-for="Raum.RaumName" class="text-danger"></span>
         </div>
         <!--Buttons-->
         <div class="form-group row">
             <div class="col-3 offset-3">
-                <input type="submit" value="Erstellen" class="btn btn-primary form-control" />
+                <input type="submit" value="Update" class="btn btn-primary form-control" />
             </div>
             <div class="col-3">
-                <a asp-page="Index" class="btn btn-success form-control">Zur Übersicht</a>
+                <a asp-page="RäumeIndex" class="btn btn-success form-control">Zur Übersicht</a>
             </div>
         </div>
     </form>

@@ -8,13 +8,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
-namespace InventurListe.Pages.Inventur
+namespace InventurListe.Pages.Inventur.Abteilungen
 {
-    public class AbteilungenModel : PageModel
+    public class AbteilungenCreateModel : PageModel
     {
         private readonly ApplicationDbContext _db;
 
-        public AbteilungenModel(ApplicationDbContext db)
+        public AbteilungenCreateModel(ApplicationDbContext db)
         {
             _db = db;
         }
@@ -31,7 +31,7 @@ namespace InventurListe.Pages.Inventur
             {
                 await _db.Abteilung.AddAsync(Abteilung);
                 await _db.SaveChangesAsync();
-                return RedirectToPage("Index");
+                return RedirectToPage("AbteilungenIndex");
             }
             else
             {

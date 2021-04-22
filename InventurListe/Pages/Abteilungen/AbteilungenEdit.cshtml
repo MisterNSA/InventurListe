@@ -1,16 +1,19 @@
 ﻿@page
-@model InventurListe.Pages.Inventur.AbteilungenModel
+@model InventurListe.Pages.Inventur.Abteilungen.AbteilungenEditModel
 @{
 }
 
+
+
 <br />
-<h2 class="text-info">Neue Abteilung</h2>
+<h2 class="text-info">Abteilungen Bearbeiten</h2>
 <br />
 
 <div class="border container" style="padding:30px;">
     <form method="post">
+        <input type="hidden" asp-for="Abteilung.Id" />
         <div class="text-danger" asp-validation-summary="ModelOnly"></div>
-        <!--Name-->
+        <!--AbteilungName-->
         <div class="form-group row">
             <div class="col-3">
                 <label asp-for="Abteilung.AbteilungName">Name der Abteilung</label>
@@ -23,15 +26,15 @@
         <!--Buttons-->
         <div class="form-group row">
             <div class="col-3 offset-3">
-                <input type="submit" value="Erstellen" class="btn btn-primary form-control" />
+                <input type="submit" value="Update" class="btn btn-primary form-control" />
             </div>
             <div class="col-3">
-                <a asp-page="Index" class="btn btn-success form-control">Zur Übersicht</a>
+                <a asp-page="AbteilungenIndex" class="btn btn-success form-control">Zur Übersicht</a>
             </div>
         </div>
     </form>
 </div>
 
-@section Scripts{ 
+@section Scripts{
     <partial name="_ValidationScriptsPartial" />
 }

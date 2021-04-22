@@ -6,37 +6,37 @@ using InventurListe.Data;
 using InventurListe.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 
-namespace InventurListe.Pages.Inventur
+namespace InventurListe.Pages.Räume
 {
-    public class RäumeModel : PageModel
+    public class RäumeEditModel : PageModel
     {
-        private readonly ApplicationDbContext _db;
+        private ApplicationDbContext _db;
 
-        public RäumeModel(ApplicationDbContext db)
+        public RäumeEditModel(ApplicationDbContext db)
         {
             _db = db;
         }
 
         [BindProperty]
         public Raum Raum { get; set; }
-        public void OnGet()
+        public async Task OnGet(int Id)
         {
+            Raum = await _db.Raum.FindAsync(Id);
         }
 
         public async Task<IActionResult> OnPost()
         {
             if (ModelState.IsValid)
             {
-                await _db.Raum.AddAsync(Raum);
+                var RaumFromDb = await _db.Raum.FindAsync(Raum.Id);
+                RaumFromDb.RaumName = Raum.RaumName;
+
                 await _db.SaveChangesAsync();
-                return RedirectToPage("Index");
+
+                return RedirectToPage("RäumeIndex");
             }
-            else
-            {
-                return Page();
-            }
+            return RedirectToPage();
         }
     }
 }

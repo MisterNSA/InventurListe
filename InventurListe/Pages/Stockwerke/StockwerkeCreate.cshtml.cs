@@ -8,13 +8,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
-namespace InventurListe.Pages.Inventur
+namespace InventurListe.Pages.Stockwerke
 {
-    public class StockwerkeModel : PageModel
+    public class StockwerkeCreateModel : PageModel
     {
         private readonly ApplicationDbContext _db;
 
-        public StockwerkeModel(ApplicationDbContext db)
+        public StockwerkeCreateModel(ApplicationDbContext db)
         {
             _db = db;
         }
@@ -31,7 +31,7 @@ namespace InventurListe.Pages.Inventur
             {
                 await _db.Stockwerk.AddAsync(Stockwerk);
                 await _db.SaveChangesAsync();
-                return RedirectToPage("Index");
+                return RedirectToPage("StockwerkeIndex");
             }
             else
             {
