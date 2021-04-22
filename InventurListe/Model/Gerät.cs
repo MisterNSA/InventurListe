@@ -9,7 +9,7 @@ namespace InventurListe.Model
     public class Gerät
     {
         [Key]
-        [RegularExpression(@"CCB.{8}", ErrorMessage = "Wird als PK verwendet! Muss mit den Großbuchstaben CCB anfangen, gefolgt von 8 Zeichen")]
+        [RegularExpression(@"\d{8}", ErrorMessage = "Wird als PK verwendet! Muss aus 8 Zahlen bestehen")]
         public string InventurNr { get; set; }
 
         [Required]
