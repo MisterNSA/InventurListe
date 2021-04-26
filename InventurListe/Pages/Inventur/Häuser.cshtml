@@ -36,7 +36,11 @@
                 <label asp-for="Haus.StandortId">Standort</label>
             </div>
             <div class="col-6">
-                <input asp-for="Haus.StandortId" class="form-control" />
+                <select asp-for="Haus.StandortId" class="form-control"
+                        asp-items="@Model.StandortOptions">
+                    <option value="">-- Wähle Standort --</option>
+                </select>
+                
             </div>
             <span asp-validation-for="Haus.StandortId" class="text-danger"></span>
         </div>

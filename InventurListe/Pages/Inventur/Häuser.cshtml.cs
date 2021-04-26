@@ -6,12 +6,15 @@ using InventurListe.Data;
 using InventurListe.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace InventurListe.Pages.Inventur
 {
     public class HäuserModel : PageModel
     {
+        public SelectList StandortOptions { get; set; }
+
         private readonly ApplicationDbContext _db;
 
         public HäuserModel(ApplicationDbContext db)
@@ -21,8 +24,31 @@ namespace InventurListe.Pages.Inventur
 
         [BindProperty]
         public Haus Haus { get; set; }
+
+        public void PopulateStandortOptions(object selectedItem = null)
+        {
+            var StandortQuery = from s in _db.Standort
+                                orderby s.StandortName
+                                select s;
+
+            StandortOptions = new SelectList(StandortQuery.AsNoTracking(), "Id", "StandortName", selectedItem);
+            
+        }
+
+        public string PopulateStandortNameBy(int Id)
+        {
+            var StandortName = from s in _db.Standort
+                                where s.Id == Id
+                                select s.StandortName;
+
+            return StandortName.ToString(); 
+
+        }
         public void OnGet()
         {
+            PopulateStandortOptions();
+            
+
         }
 
         public async Task<IActionResult> OnPost()
