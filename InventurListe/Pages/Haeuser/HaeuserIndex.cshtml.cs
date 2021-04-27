@@ -42,8 +42,8 @@ namespace InventurListe.Pages.Haeuser
         {
             var StandortName = from Standort in _db.Standort
                                where Standort.Id == Id
-                               select Standort.StandortName;
-            return StandortName.ToString();
+                               select Standort;
+            return StandortName.FirstOrDefault().StandortName;
         }
         public string PopulateRaumNameBy(int? Id)
         {
@@ -53,18 +53,18 @@ namespace InventurListe.Pages.Haeuser
             }
             else
             {
-            var RaumName = from s in _db.Raum
+                var RaumName = from s in _db.Raum
                                where s.Id == Id
-                               select s.RaumName;
-            return RaumName.ToString();
+                               select s;
+            return RaumName.FirstOrDefault().RaumName;
             }
         }
         public string PopulateStockNameBy(int Id)
         {
             var StockName = from s in _db.Stockwerk
                                where s.Id == Id
-                               select s.StockName;
-            return StockName.ToString();
+                               select s;
+            return StockName.FirstOrDefault().StockName;
         }
     }
 }

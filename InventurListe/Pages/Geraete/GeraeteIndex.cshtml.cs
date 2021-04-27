@@ -43,30 +43,30 @@ namespace InventurListe.Pages.Inventur
             // WIP Alle wichtigen Daten zusammenführen
             var GeräteTypName = from GeräteTyp in _db.GeräteTyp
                            where GeräteTyp.Id == Id
-                           select GeräteTyp.GerätTyp;
-            return GeräteTypName.ToString();
+                           select GeräteTyp;
+            return GeräteTypName.FirstOrDefault().GerätTyp;
         }
         public string PopulateHausNameBy(int Id)
         {
             // WIP Alle wichtigen Daten zusammenführen
             var HausName = from Haus in _db.Haus
                                where Haus.Id == Id
-                               select Haus.HausName;
-            return HausName.ToString();
+                               select Haus;
+            return HausName.FirstOrDefault().HausName;
         }
         public string PopulateBetriebssystemNameBy(int Id)
         {
             var BetriebssystemName = from Betriebssystem in _db.Betriebssystem
                            where Betriebssystem.Id == Id
-                           select Betriebssystem.Name;
-            return BetriebssystemName.ToString();
+                           select Betriebssystem;
+            return BetriebssystemName.FirstOrDefault().Name;
         }
         public string PopulateAbteilungNameBy(int Id)
         {
             var AbteilungName = from Abteilung in _db.Abteilung
                             where Abteilung.Id == Id
-                            select Abteilung.AbteilungName;
-            return AbteilungName.ToString();
+                            select Abteilung;
+            return AbteilungName.FirstOrDefault().AbteilungName;
         }
     }
 }
