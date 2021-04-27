@@ -53,7 +53,7 @@
                         @Html.DisplayFor(m => RaumNamePopulated)
                     </td>
                     <td>
-                        @{ var StockNamePopulated = Model.PopulateStockNameBy(item.StockId);
+                        @{ var StockNamePopulated = Model.PopulateStockNameBy(item.StockId).FirstOrDefault().StockName;
                         }
                         @Html.DisplayFor(m => StockNamePopulated)
                     </td>

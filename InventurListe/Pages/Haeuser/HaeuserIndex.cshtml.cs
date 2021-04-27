@@ -13,6 +13,7 @@ namespace InventurListe.Pages.Haeuser
     public class HaeuserIndexModel : PageModel
     {
         private readonly ApplicationDbContext _db;
+        public string AnzeigeRaumName = "";
 
         public HaeuserIndexModel(ApplicationDbContext db)
         {
@@ -40,10 +41,10 @@ namespace InventurListe.Pages.Haeuser
 
         public string PopulateStandortNameBy(int Id)
         {
-            var StandortName = from Standort in _db.Standort
-                               where Standort.Id == Id
-                               select Standort.StandortName;
-            return StandortName.ToString();
+            var DerStandort = (from s in _db.Standort
+                                where s.Id == Id
+                                select s).FirstOrDefault();
+            return DerStandort.StandortName;
         }
         public string PopulateRaumNameBy(int? Id)
         {
@@ -53,18 +54,18 @@ namespace InventurListe.Pages.Haeuser
             }
             else
             {
-            var RaumName = from s in _db.Raum
+            var DerRaum = from s in _db.Raum
                                where s.Id == Id
-                               select s.RaumName;
-            return RaumName.ToString();
+                               select s;
+            return DerRaum.FirstOrDefault().RaumName;
             }
         }
-        public string PopulateStockNameBy(int Id)
+        public IQueryable<Stockwerk> PopulateStockNameBy(int Id)
         {
-            var StockName = from s in _db.Stockwerk
-                               where s.Id == Id
-                               select s.StockName;
-            return StockName.ToString();
+            var DerStock = from s in _db.Stockwerk
+                           where s.Id == Id
+                           select s;
+            return DerStock;
         }
     }
 }

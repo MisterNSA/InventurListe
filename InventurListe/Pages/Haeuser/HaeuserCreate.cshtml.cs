@@ -42,7 +42,7 @@ namespace InventurListe.Pages.Haeuser
             {
                 await _db.Haus.AddAsync(Haus);
                 await _db.SaveChangesAsync();
-                return RedirectToPage("RaeumeIndex");
+                return RedirectToPage("HaeuserIndex");
             }
             else
             {
