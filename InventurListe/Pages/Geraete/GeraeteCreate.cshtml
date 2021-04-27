@@ -23,22 +23,26 @@
         <!--GeräteTypId-->
         <div class="form-group row">
             <div class="col-3">
-                <label asp-for="Gerät.GeräteTypId">Geräte-Typ</label>
+                <label>GeräteTyp</label>
             </div>
             <div class="col-6">
-                <input asp-for="Gerät.GeräteTypId" class="form-control" />
+                <select asp-for="Gerät.GeräteTypId" class="form-control"
+                        asp-items="@Model.GeräteTypOptions">
+                    <option value="">-- Wähle GeräteTyp --</option>
+                </select>
             </div>
-            <span asp-validation-for="Gerät.GeräteTypId" class="text-danger"></span>
         </div>
         <!--HausId-->
         <div class="form-group row">
             <div class="col-3">
-                <label asp-for="Gerät.HausId">Haus</label>
+                <label>Haus</label>
             </div>
             <div class="col-6">
-                <input asp-for="Gerät.HausId" class="form-control" />
+                <select asp-for="Gerät.HausId" class="form-control"
+                        asp-items="@Model.HausOptions">
+                    <option value="">-- Wähle Haus --</option>
+                </select>
             </div>
-            <span asp-validation-for="Gerät.HausId" class="text-danger"></span>
         </div>
         <!--MAC-->
         <div class="form-group row">
@@ -73,12 +77,14 @@
         <!--BetriebssystemId-->
         <div class="form-group row">
             <div class="col-3">
-                <label asp-for="Gerät.BetriebssystemId">Betriebssystem</label>
+                <label>Betriebssystem</label>
             </div>
             <div class="col-6">
-                <input asp-for="Gerät.BetriebssystemId" class="form-control" />
+                <select asp-for="Gerät.BetriebssystemId" class="form-control"
+                        asp-items="@Model.BetriebssystemOptions">
+                    <option value="">-- Wähle Betriebssystem --</option>
+                </select>
             </div>
-            <span asp-validation-for="Gerät.BetriebssystemId" class="text-danger"></span>
         </div>
         <!--VianovaNr-->
         <div class="form-group row">
@@ -93,12 +99,14 @@
         <!--AbteilungId-->
         <div class="form-group row">
             <div class="col-3">
-                <label asp-for="Gerät.AbteilungId">Abteilung</label>
+                <label>Abteilung</label>
             </div>
             <div class="col-6">
-                <input asp-for="Gerät.AbteilungId" class="form-control" />
+                <select asp-for="Gerät.AbteilungId" class="form-control"
+                        asp-items="@Model.AbteilungOptions">
+                    <option value="">-- Wähle Abteilung --</option>
+                </select>
             </div>
-            <span asp-validation-for="Gerät.AbteilungId" class="text-danger"></span>
         </div>
         <!--Buttons-->
         <div class="form-group row">

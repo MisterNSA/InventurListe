@@ -8,7 +8,7 @@
         <h2 class="text-info">Geräte Liste</h2>
     </div>
     <div class="col-3">
-        <a asp-page="Create" class="btn btn-info form-control text-white">Neuer Eintrag</a>
+        <a asp-page="GeraeteCreate" class="btn btn-info form-control text-white">Neuer Eintrag</a>
     </div>
 
 
@@ -33,29 +33,29 @@
                         <th>
                             <label asp-for="Gerät.FirstOrDefault().VianovaNr"></label>
                         </th>
-                        <!--
-    <th>
-        <label asp-for="Gerät.FirstOrDefault().GeräteTypName"></label>
-    </th>
-    <th> -- HausName
-        <label asp-for="Gerät.FirstOrDefault().Name"></label>
-    </th>
-    <th> -- BetriebssystemName
-        <label asp-for="Gerät.FirstOrDefault().Name"></label>
-    </th>
-    <th> -- AbteilungName
-        <label asp-for="Gerät.FirstOrDefault().Name"></label>
-    </th>
-        <th> -- AbteilungName
-        <label>Buttons</label>
-    </th>
-    //-->
+                        <th>
+                            <label>GeräteTyp</label>
+                        </th>
+                        <th>
+                            <label>Haus</label>
+                        </th>
+                        <th>
+                            <label>Betriebssystem</label>
+                        </th>
+                        <th>
+                            <label>Abteilung</label>
+                        </th>
+                        <th>
+                            <label>Buttons</label>
+                        </th>
                     </tr>
                     @foreach (var item in Model.Gerät)
                     {
                         <tr>
                             <td>
-                                @Html.DisplayFor(m => item.InventurNr)
+                                @{ var InventurNummer = "CCB" + item.InventurNr;
+                                }
+                                @Html.DisplayFor(m => InventurNummer)
                             </td>
                             <td>
                                 @Html.DisplayFor(m => item.MAC)
@@ -69,10 +69,29 @@
                             <td>
                                 @Html.DisplayFor(m => item.VianovaNr)
                             </td>
-
+                            <td>
+                                @{ var GeräteTypPopulated = Model.PopulateGeräteTypNameBy(item.GeräteTypId);
+                                }
+                                @Html.DisplayFor(m => GeräteTypPopulated)
+                            </td>
+                            <td>
+                                @{ var HausNamePopulated = Model.PopulateHausNameBy(item.HausId);
+                                }
+                                @Html.DisplayFor(m => HausNamePopulated)
+                            </td>
+                            <td>
+                                @{ var BetriebssystemPopulated = Model.PopulateBetriebssystemNameBy(item.BetriebssystemId);
+                                }
+                                @Html.DisplayFor(m => BetriebssystemPopulated)
+                            </td>
+                            <td>
+                                @{ var AbteilungPopulated = Model.PopulateAbteilungNameBy(item.AbteilungId);
+                                }
+                                @Html.DisplayFor(m => AbteilungPopulated)
+                            </td>
                             <td>
                                 <button asp-page-handler="Delete" asp-route-InventurNr="@item.InventurNr" onclick="return confirm('Soll der Eintrag wirklich gelöscht werden?')" class="btn btn-danger btn-sm">Löschen</button>
-                                <a asp-page="Edit" asp-route-InventurNr="@item.InventurNr" class="btn btn-success btn-sm text-white">Ändern</a>
+                                <a asp-page="GeraeteEdit" asp-route-InventurNr="@item.InventurNr" class="btn btn-success btn-sm text-white">Ändern</a>
                             </td>
                         </tr>
                     }
