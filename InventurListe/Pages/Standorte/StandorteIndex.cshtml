@@ -1,0 +1,53 @@
+﻿@page
+@model InventurListe.Pages.Standorte.StandorteIndexModel
+@{
+}
+
+<div class="container row p-0 m-0">
+    <div class="col-9">
+        <h2 class="text-info">Standort Liste</h2>
+    </div>
+    <div class="col-3">
+        <a asp-page="StandorteCreate" class="btn btn-info form-control text-white">Neuer Eintrag</a>
+    </div>
+
+
+    <diiv class="col-10 border p-3 mt-3">
+        <form method="post">
+            @if (Model.Standort.Count() > 0)
+            {
+                <table class="table table-striped border">
+                    <tr class="table-secondary">
+                        <th>
+                            <label asp-for="Standort.FirstOrDefault().StandortName"></label>
+                        </th>
+                        <th>
+                            <label>Buttons</label>
+                        </th>
+                    </tr>
+                    @foreach (var item in Model.Standort)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(m => item.StandortName)
+                            </td>
+                            <td>
+                                <button asp-page-handler="Delete" asp-route-Id="@item.Id" onclick="return confirm('Soll der Eintrag wirklich gelöscht werden?')" class="btn btn-danger btn-sm">Löschen</button>
+                                <a asp-page="StandorteEdit" asp-route-Id="@item.Id" class="btn btn-success btn-sm text-white">Ändern</a>
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            }
+            else
+            {
+                <p>Keine Standorte zum Anzeigen verfügbar</p>
+            }
+        </form>
+    </diiv>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

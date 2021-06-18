@@ -1,0 +1,74 @@
+﻿@page
+@model InventurListe.Pages.Haeuser.HaeuserEditModel
+@{
+}
+
+<br />
+<h2 class="text-info">Häuser Bearbeiten</h2>
+<br />
+
+<div class="border container" style="padding:30px;">
+    <form method="post">
+        <input type="hidden" asp-for="Haus.Id" />
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        <!--Name-->
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Haus.HausName">Name des Hauses</label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Haus.HausName" class="form-control" />
+            </div>
+            <span asp-validation-for="Haus.HausName" class="text-danger"></span>
+        </div>
+        <!--Standort-->
+        <div class="form-group row">
+            <div class="col-3">
+                <label>Name des Standorts</label>
+            </div>
+            <div class="col-6">
+                <select asp-for="Haus.StandortId" class="form-control"
+                        asp-items="@Model.StandortOptions">
+                    <option value="">-- Wähle Standort --</option>
+                </select>
+            </div>
+        </div>
+        <!--Raum-->
+        <div class="form-group row">
+            <div class="col-3">
+                <label>Name des Raums</label>
+            </div>
+            <div class="col-6">
+                <select asp-for="Haus.RaumId" class="form-control"
+                        asp-items="@Model.RaumOptions">
+                    <option value="">-- Wähle Raum --</option>
+                </select>
+            </div>
+        </div>
+        <!--Stockwerk-->
+        <div class="form-group row">
+            <div class="col-3">
+                <label>Name des Stockwerks</label>
+            </div>
+            <div class="col-6">
+                <select asp-for="Haus.StockId" class="form-control"
+                        asp-items="@Model.StockOptions">
+                    <option value="">-- Wähle Stockwerk --</option>
+                </select>
+            </div>
+        </div>
+        <!--Buttons-->
+        <div class="form-group row">
+            <div class="col-3 offset-3">
+                <input type="submit" value="Update" class="btn btn-primary form-control" />
+            </div>
+            <div class="col-3">
+                <a asp-page="RäumeIndex" class="btn btn-success form-control">Zur Übersicht</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

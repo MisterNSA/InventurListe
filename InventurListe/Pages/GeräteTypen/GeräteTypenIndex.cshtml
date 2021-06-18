@@ -1,0 +1,60 @@
+﻿@page
+@model InventurListe.Pages.GeräteTypenIndexModel
+@{
+}
+
+
+<div class="container row p-0 m-0">
+    <div class="col-9">
+        <h2 class="text-info">Geräte Typen Liste</h2>
+    </div>
+    <div class="col-3">
+        <a asp-page="GeräteTypenCreate" class="btn btn-info form-control text-white">Neuer Eintrag</a>
+    </div>
+
+
+    <diiv class="col-10 border p-3 mt-3">
+        <form method="post">
+            @if (Model.GeräteTyp.Count() > 0)
+            {
+            <table class="table table-striped border">
+                <tr class="table-secondary">
+                    <th>
+                        <label asp-for="GeräteTyp.FirstOrDefault().Modell"></label>
+                    </th>
+                    <th>
+                        <label asp-for="GeräteTyp.FirstOrDefault().GerätTyp"></label>
+                    </th>
+                    <th>
+                        <label>Buttons</label>
+                    </th>
+                </tr>
+                @foreach (var item in Model.GeräteTyp)
+                {
+            <tr>
+                <td>
+                    @Html.DisplayFor(m => item.Modell)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.GerätTyp)
+                </td>
+                <td>
+                    <button asp-page-handler="Delete" asp-route-Id="@item.Id" onclick="return confirm('Soll der Eintrag wirklich gelöscht werden?')" class="btn btn-danger btn-sm">Löschen</button>
+                    <a asp-page="GeräteTypenEdit" asp-route-Id="@item.Id" class="btn btn-success btn-sm text-white">Ändern</a>
+                </td>
+            </tr>
+                }
+
+            </table>
+            }
+            else
+            {
+                <p>Keine GeräteTypen zum Anzeigen verfügbar</p>
+            }
+        </form>
+    </diiv>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

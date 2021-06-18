@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace InventurListe.Migrations
+namespace InventurListe.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210417145806_AllModelsToDb")]
-    partial class AllModelsToDb
+    [Migration("20210417190354_RelationenHinzufügen")]
+    partial class RelationenHinzufügen
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -61,6 +61,9 @@ namespace InventurListe.Migrations
                     b.Property<int>("AbteilungId")
                         .HasColumnType("int");
 
+                    b.Property<int>("BetriebssystemId")
+                        .HasColumnType("int");
+
                     b.Property<int>("GeräteTypId")
                         .HasColumnType("int");
 
@@ -79,13 +82,18 @@ namespace InventurListe.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("OsIs")
-                        .HasColumnType("int");
-
                     b.Property<int>("VianovaNr")
                         .HasColumnType("int");
 
                     b.HasKey("InventurNr");
+
+                    b.HasIndex("AbteilungId");
+
+                    b.HasIndex("BetriebssystemId");
+
+                    b.HasIndex("GeräteTypId");
+
+                    b.HasIndex("HausId");
 
                     b.ToTable("Gerät");
                 });
@@ -117,12 +125,12 @@ namespace InventurListe.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("HausId")
-                        .HasColumnType("int");
-
                     b.Property<string>("HausName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("RaumId")
+                        .HasColumnType("int");
 
                     b.Property<int>("StandortId")
                         .HasColumnType("int");
@@ -130,7 +138,16 @@ namespace InventurListe.Migrations
                     b.Property<int>("StockId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("StockwerkId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("RaumId");
+
+                    b.HasIndex("StandortId");
+
+                    b.HasIndex("StockwerkId");
 
                     b.ToTable("Haus");
                 });
@@ -325,10 +342,12 @@ namespace InventurListe.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -365,10 +384,12 @@ namespace InventurListe.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -376,6 +397,64 @@ namespace InventurListe.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("InventurListe.Model.Gerät", b =>
+                {
+                    b.HasOne("InventurListe.Model.Abteilung", "Abteilung")
+                        .WithMany()
+                        .HasForeignKey("AbteilungId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("InventurListe.Model.Betriebssystem", "Betriebssystem")
+                        .WithMany()
+                        .HasForeignKey("BetriebssystemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("InventurListe.Model.GeräteTyp", "GeräteTyp")
+                        .WithMany()
+                        .HasForeignKey("GeräteTypId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("InventurListe.Model.Haus", "Haus")
+                        .WithMany()
+                        .HasForeignKey("HausId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Abteilung");
+
+                    b.Navigation("Betriebssystem");
+
+                    b.Navigation("GeräteTyp");
+
+                    b.Navigation("Haus");
+                });
+
+            modelBuilder.Entity("InventurListe.Model.Haus", b =>
+                {
+                    b.HasOne("InventurListe.Model.Raum", "Raum")
+                        .WithMany()
+                        .HasForeignKey("RaumId");
+
+                    b.HasOne("InventurListe.Model.Standort", "Standort")
+                        .WithMany()
+                        .HasForeignKey("StandortId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("InventurListe.Model.Stockwerk", "Stockwerk")
+                        .WithMany()
+                        .HasForeignKey("StockwerkId");
+
+                    b.Navigation("Raum");
+
+                    b.Navigation("Standort");
+
+                    b.Navigation("Stockwerk");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

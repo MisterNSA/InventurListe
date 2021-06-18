@@ -18,7 +18,7 @@ Deshalb wäre es gut, alles geordnet in einer Datenbank zu haben, auf die mehrer
 ## Daraus ergeben sich für mich folgende Arbeitsschritte:
 - [ ] Server aufsetzen - Windows mit IIS-Webserver 
 - [ ] DB Erstellen (C#, ADO.NET)
-   - [ ] Modelle für die einzelnen Tabellen erstellen
+   - [x] Modelle für die einzelnen Tabellen erstellen
    - [ ] Tabellen miteinander verknüpfen
 - [ ] Frontend erstellen (Aufgeteilt in 3 Seiten) 
    - [ ] Home-Seite (Übersicht und kurze Info über das Programm)

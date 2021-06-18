@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace InventurListe.Migrations
+namespace InventurListe.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210417144233_GerätToDb")]
-    partial class GerätToDb
+    [Migration("20210418191221_EntfernenUnnötigerRequirements")]
+    partial class EntfernenUnnötigerRequirements
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,12 +21,47 @@ namespace InventurListe.Migrations
                 .HasAnnotation("ProductVersion", "5.0.5")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("InventurListe.Model.Abteilung", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AbteilungName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Abteilung");
+                });
+
+            modelBuilder.Entity("InventurListe.Model.Betriebssystem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Betriebssystem");
+                });
+
             modelBuilder.Entity("InventurListe.Model.Gerät", b =>
                 {
                     b.Property<string>("InventurNr")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AbteilungId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BetriebssystemId")
                         .HasColumnType("int");
 
                     b.Property<int>("GeräteTypId")
@@ -36,26 +71,130 @@ namespace InventurListe.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("IP")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MAC")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("OsIs")
-                        .HasColumnType("int");
-
                     b.Property<int>("VianovaNr")
                         .HasColumnType("int");
 
                     b.HasKey("InventurNr");
 
+                    b.HasIndex("AbteilungId");
+
+                    b.HasIndex("BetriebssystemId");
+
+                    b.HasIndex("GeräteTypId");
+
+                    b.HasIndex("HausId");
+
                     b.ToTable("Gerät");
+                });
+
+            modelBuilder.Entity("InventurListe.Model.GeräteTyp", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("GerätTyp")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Modell")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("GeräteTyp");
+                });
+
+            modelBuilder.Entity("InventurListe.Model.Haus", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("HausName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("RaumId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StandortId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StockId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("StockwerkId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RaumId");
+
+                    b.HasIndex("StandortId");
+
+                    b.HasIndex("StockwerkId");
+
+                    b.ToTable("Haus");
+                });
+
+            modelBuilder.Entity("InventurListe.Model.Raum", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("RaumName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Raum");
+                });
+
+            modelBuilder.Entity("InventurListe.Model.Standort", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("StandortName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Standort");
+                });
+
+            modelBuilder.Entity("InventurListe.Model.Stockwerk", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("StockName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Stockwerk");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -201,10 +340,12 @@ namespace InventurListe.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -241,10 +382,12 @@ namespace InventurListe.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -252,6 +395,64 @@ namespace InventurListe.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("InventurListe.Model.Gerät", b =>
+                {
+                    b.HasOne("InventurListe.Model.Abteilung", "Abteilung")
+                        .WithMany()
+                        .HasForeignKey("AbteilungId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("InventurListe.Model.Betriebssystem", "Betriebssystem")
+                        .WithMany()
+                        .HasForeignKey("BetriebssystemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("InventurListe.Model.GeräteTyp", "GeräteTyp")
+                        .WithMany()
+                        .HasForeignKey("GeräteTypId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("InventurListe.Model.Haus", "Haus")
+                        .WithMany()
+                        .HasForeignKey("HausId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Abteilung");
+
+                    b.Navigation("Betriebssystem");
+
+                    b.Navigation("GeräteTyp");
+
+                    b.Navigation("Haus");
+                });
+
+            modelBuilder.Entity("InventurListe.Model.Haus", b =>
+                {
+                    b.HasOne("InventurListe.Model.Raum", "Raum")
+                        .WithMany()
+                        .HasForeignKey("RaumId");
+
+                    b.HasOne("InventurListe.Model.Standort", "Standort")
+                        .WithMany()
+                        .HasForeignKey("StandortId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("InventurListe.Model.Stockwerk", "Stockwerk")
+                        .WithMany()
+                        .HasForeignKey("StockwerkId");
+
+                    b.Navigation("Raum");
+
+                    b.Navigation("Standort");
+
+                    b.Navigation("Stockwerk");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

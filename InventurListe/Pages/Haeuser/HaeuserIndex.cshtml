@@ -1,0 +1,79 @@
+﻿@page
+@model InventurListe.Pages.Haeuser.HaeuserIndexModel
+@{
+}
+
+
+
+<div class="container row p-0 m-0">
+    <div class="col-9">
+        <h2 class="text-info">Häuser Liste</h2>
+    </div>
+    <div class="col-3">
+        <a asp-page="HaeuserCreate" class="btn btn-info form-control text-white">Neuer Eintrag</a>
+    </div>
+
+
+    <diiv class="col-10 border p-3 mt-3">
+        <form method="post">
+            @if (Model.Haus.Count() > 0)
+            {
+                <table class="table table-striped border">
+                    <tr class="table-secondary">
+                        <th>
+                            <label asp-for="Haus.FirstOrDefault().HausName"></label>
+                        </th>
+                        <th>
+                            <label>Standort</label>
+                        </th>
+                        <th>
+                            <label>Raum</label>
+                        </th>
+                        <th>
+                            <label>Stockwerk</label>
+                        </th>
+                        <th>
+                            <label>Buttons</label>
+                        </th>
+                    </tr>
+                    @foreach (var item in Model.Haus)
+                    {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(m => item.HausName)
+                    </td>
+                    <td>
+                        @{ var StandortNamePopulated = Model.PopulateStandortNameBy(item.StandortId);
+                        }
+                        @Html.DisplayFor(m => StandortNamePopulated)
+                    </td>
+                    <td>
+                        @{ var RaumNamePopulated = Model.PopulateRaumNameBy(item.RaumId);
+                        }
+                        @Html.DisplayFor(m => RaumNamePopulated)
+                    </td>
+                    <td>
+                        @{ var StockNamePopulated = Model.PopulateStockNameBy(item.StockId);
+                        }
+                        @Html.DisplayFor(m => StockNamePopulated)
+                    </td>
+                    <td>
+                        <button asp-page-handler="Delete" asp-route-Id="@item.Id" onclick="return confirm('Soll der Eintrag wirklich gelöscht werden?')" class="btn btn-danger btn-sm">Löschen</button>
+                        <a asp-page="HaeuserEdit" asp-route-Id="@item.Id" class="btn btn-success btn-sm text-white">Ändern</a>
+                    </td>
+                </tr>
+                    }
+
+                </table>
+            }
+            else
+            {
+                <p>Keine Häuser zum Anzeigen verfügbar</p>
+            }
+        </form>
+    </diiv>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

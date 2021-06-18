@@ -1,0 +1,114 @@
+﻿@page
+@model InventurListe.Pages.Inventur.EditModel
+
+<br />
+<h2 class="text-info">Gerät Bearbeiten</h2>
+<br />
+
+<div class="border container" style="padding:30px;">
+    <form method="post">
+        <input type="hidden" asp-for="Gerät.InventurNr" />
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        <!--GeräteTypId-->
+        <div class="form-group row">
+            <div class="col-3">
+                <label>GeräteTyp</label>
+            </div>
+            <div class="col-6">
+                <select asp-for="Gerät.GeräteTypId" class="form-control"
+                        asp-items="@Model.GeräteTypOptions">
+                    <option value="">-- Wähle GeräteTyp --</option>
+                </select>
+            </div>
+        </div>
+        <!--HausId-->
+        <div class="form-group row">
+            <div class="col-3">
+                <label>Haus</label>
+            </div>
+            <div class="col-6">
+                <select asp-for="Gerät.HausId" class="form-control"
+                        asp-items="@Model.HausOptions">
+                    <option value="">-- Wähle Haus --</option>
+                </select>
+            </div>
+        </div>
+        <!--MAC-->
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Gerät.MAC"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Gerät.MAC" class="form-control" />
+            </div>
+            <span asp-validation-for="Gerät.MAC" class="text-danger"></span>
+        </div>
+        <!--IP-->
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Gerät.IP"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Gerät.IP" class="form-control" />
+            </div>
+            <span asp-validation-for="Gerät.IP" class="text-danger"></span>
+        </div>
+        <!--Name-->
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Gerät.Name"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Gerät.Name" class="form-control" />
+            </div>
+            <span asp-validation-for="Gerät.Name" class="text-danger"></span>
+        </div>
+        <!--BetriebssystemId-->
+        <div class="form-group row">
+            <div class="col-3">
+                <label>Betriebssystem</label>
+            </div>
+            <div class="col-6">
+                <select asp-for="Gerät.BetriebssystemId" class="form-control"
+                        asp-items="@Model.BetriebssystemOptions">
+                    <option value="">-- Wähle Betriebssystem --</option>
+                </select>
+            </div>
+        </div>
+        <!--VianovaNr-->
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Gerät.VianovaNr"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Gerät.VianovaNr" class="form-control" />
+            </div>
+            <span asp-validation-for="Gerät.VianovaNr" class="text-danger"></span>
+        </div>
+        <!--AbteilungId-->
+        <div class="form-group row">
+            <div class="col-3">
+                <label>Abteilung</label>
+            </div>
+            <div class="col-6">
+                <select asp-for="Gerät.AbteilungId" class="form-control"
+                        asp-items="@Model.AbteilungOptions">
+                    <option value="">-- Wähle Abteilung --</option>
+                </select>
+            </div>
+        </div>
+        <!--Buttons-->
+        <div class="form-group row">
+            <div class="col-3 offset-3">
+                <input type="submit" value="Update" class="btn btn-primary form-control" />
+            </div>
+            <div class="col-3">
+                <a asp-page="Index" class="btn btn-success form-control">Zur Übersicht</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
