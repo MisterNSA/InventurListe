@@ -56,18 +56,53 @@ namespace InventurListe.Pages.Inventur
                                 select s;
             GeräteTypOptions = new SelectList(GeräteTypQuery.AsNoTracking(), "Id", "GerätTyp", selectedItem);
         }
+        
+        public void PopulateHausOptions(object selectedItem = null)
+        {
+            var HausQuery = from haus in _db.Haus
+                            join Standort in _db.Standort
+                                on haus.StandortId equals Standort.Id
+                            join Stockwerk in _db.Stockwerk
+                                on haus.StockId equals Stockwerk.Id
+                            join Raum in _db.Raum
+                                on haus.RaumId equals Raum.Id
+                            orderby Standort.StandortName, haus.HausName, Stockwerk.StockName, Raum.RaumName
+                            select new
+                            {
+                                hid = haus.Id,
+                                hbeschreibung = Standort.StandortName + " - " + haus.HausName + " - " + Stockwerk.StockName + " - " + Raum.RaumName
+                            };
+            HausOptions = new SelectList(HausQuery.AsNoTracking(), "hid", "hbeschreibung", selectedItem);
+        }
+
         /*
         public void PopulateHausOptions(object selectedItem = null)
         {
             var HausQuery = from s in _db.Haus
                             orderby s.HausName
                             select s;
-            HausOptions = new SelectList(HausQuery.AsNoTracking(), "Id", "HausName", selectedItem);
-        }
-        */
+            
+            var HausInfo = from haus in _db.Haus
+                           join Standort in _db.Standort
+                               on haus.StandortId equals Standort.Id
+                           join Stockwerk in _db.Stockwerk
+                               on haus.StockId equals Stockwerk.Id
+                           join Raum in _db.Raum
+                               on haus.RaumId equals Raum.Id
+                           select (Standort.StandortName + "-" + haus.HausName + "-" + Stockwerk.StockName + "-" + Raum.RaumName);
+            HausInfo.ToString();
+
+            HausOptions = new SelectList(HausQuery.AsNoTracking(), "Id", HausInfo, selectedItem);
+        }*/
+
+        /*
         public void PopulateHausOptions(object selectedItem = null)
         {
-            var HausQuery = from haus in _db.Haus
+            var HausQuery = from s in _db.Haus
+                            orderby s.HausName
+                            select s;
+
+            var HausQueryInfos = from haus in _db.Haus
                             join Standort in _db.Standort
                                 on haus.StandortId equals Standort.Id
                             join Stockwerk in _db.Stockwerk 
@@ -81,8 +116,9 @@ namespace InventurListe.Pages.Inventur
                                 Stock = Stockwerk.StockName,
                                 Raum = Raum.RaumName
                             };
-            HausOptions = new SelectList(HausQuery.AsNoTracking());
-        }
+            String HausInfo = HausQueryInfos.ToString();
+            HausOptions = new SelectList(HausQuery.AsNoTracking(), "Id", HausInfo, selectedItem);
+        }*/
 
         public void PopulateBetriebssystemOptions(object selectedItem = null)
         {

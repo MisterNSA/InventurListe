@@ -64,15 +64,6 @@ namespace InventurListe.Pages.Inventur
                                  select s;
             GeräteTypOptions = new SelectList(GeräteTypQuery.AsNoTracking(), "Id", "GerätTyp", selectedItem);
         }
-        /*
-        public void PopulateHausOptions(object selectedItem = null)
-        {
-            var HausQuery = from s in _db.Haus
-                            orderby s.HausName
-                            select s;
-            HausOptions = new SelectList(HausQuery.AsNoTracking(), "Id", "HausName", selectedItem);
-        }
-        */
         public void PopulateHausOptions(object selectedItem = null)
         {
             var HausQuery = from haus in _db.Haus
@@ -82,14 +73,13 @@ namespace InventurListe.Pages.Inventur
                                 on haus.StockId equals Stockwerk.Id
                             join Raum in _db.Raum
                                 on haus.RaumId equals Raum.Id
+                            orderby Standort.StandortName, haus.HausName, Stockwerk.StockName, Raum.RaumName
                             select new
                             {
-                                Standort = Standort.StandortName,
-                                Haus = haus.HausName,
-                                Stock = Stockwerk.StockName,
-                                Raum = Raum.RaumName
+                                hid = haus.Id,
+                                hbeschreibung = Standort.StandortName + " - " + haus.HausName + " - " + Stockwerk.StockName + " - " + Raum.RaumName
                             };
-            HausOptions = new SelectList(HausQuery.AsNoTracking());
+            HausOptions = new SelectList(HausQuery.AsNoTracking(), "hid", "hbeschreibung", selectedItem);
         }
 
         public void PopulateBetriebssystemOptions(object selectedItem = null)

@@ -40,33 +40,43 @@ namespace InventurListe.Pages.Inventur
 
         public string PopulateGeräteTypNameBy(int Id)
         {
-            // WIP Alle wichtigen Daten zusammenführen
-            var GeräteTypName = from GeräteTyp in _db.GeräteTyp
-                           where GeräteTyp.Id == Id
-                           select GeräteTyp;
-            return GeräteTypName.FirstOrDefault().GerätTyp;
+            var GeräteTypName = (from GeräteTyp in _db.GeräteTyp
+                                 where GeräteTyp.Id == Id
+                                 select GeräteTyp.GerätTyp).FirstOrDefault();
+            return GeräteTypName.ToString();
         }
         public string PopulateHausNameBy(int Id)
         {
-            // WIP Alle wichtigen Daten zusammenführen
-            var HausName = from Haus in _db.Haus
-                               where Haus.Id == Id
-                               select Haus;
-            return HausName.FirstOrDefault().HausName;
+            var HausQuery = from haus in _db.Haus
+                            join Standort in _db.Standort
+                                on haus.StandortId equals Standort.Id
+                            join Stockwerk in _db.Stockwerk
+                                on haus.StockId equals Stockwerk.Id
+                            join Raum in _db.Raum
+                                on haus.RaumId equals Raum.Id
+                            where haus.Id == Id
+                            select new
+                            {
+                                Hausname = Standort.StandortName
+                                + " - " + haus.HausName
+                                + " - " + Stockwerk.StockName
+                                + " - " + Raum.RaumName
+                            };
+            return HausQuery.FirstOrDefault().Hausname.ToString();
         }
         public string PopulateBetriebssystemNameBy(int Id)
         {
-            var BetriebssystemName = from Betriebssystem in _db.Betriebssystem
-                           where Betriebssystem.Id == Id
-                           select Betriebssystem;
-            return BetriebssystemName.FirstOrDefault().Name;
+            var BetriebssystemName = (from Betriebssystem in _db.Betriebssystem
+                                      where Betriebssystem.Id == Id
+                                      select Betriebssystem.Name).FirstOrDefault();
+            return BetriebssystemName.ToString();
         }
         public string PopulateAbteilungNameBy(int Id)
         {
-            var AbteilungName = from Abteilung in _db.Abteilung
-                            where Abteilung.Id == Id
-                            select Abteilung;
-            return AbteilungName.FirstOrDefault().AbteilungName;
+            var AbteilungName = (from Abteilung in _db.Abteilung
+                                 where Abteilung.Id == Id
+                                 select Abteilung.AbteilungName).FirstOrDefault();
+            return AbteilungName.ToString();
         }
     }
 }
