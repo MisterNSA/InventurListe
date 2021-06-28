@@ -49,6 +49,7 @@ namespace InventurListe.Pages.Inventur
             }
         }
         // Auswahllisten
+        /*
         public void PopulateGeräteTypOptions(object selectedItem = null)
         {
             var GeräteTypQuery = from s in _db.GeräteTyp
@@ -56,7 +57,18 @@ namespace InventurListe.Pages.Inventur
                                 select s;
             GeräteTypOptions = new SelectList(GeräteTypQuery.AsNoTracking(), "Id", "GerätTyp", selectedItem);
         }
-        
+        */
+        public void PopulateGeräteTypOptions(object selectedItem = null)
+        {
+            var GeräteTypQuery = from s in _db.GeräteTyp
+                                 orderby s.GerätTyp
+                                 select new
+                                 { 
+                                    gid = s.Id,
+                                    gbeschreibung = s.GerätTyp + " - " + s.Modell
+                                 };
+            GeräteTypOptions = new SelectList(GeräteTypQuery.AsNoTracking(), "gid", "gbeschreibung", selectedItem);
+        }
         public void PopulateHausOptions(object selectedItem = null)
         {
             var HausQuery = from haus in _db.Haus

@@ -61,8 +61,12 @@ namespace InventurListe.Pages.Inventur
         {
             var GeräteTypQuery = from s in _db.GeräteTyp
                                  orderby s.GerätTyp
-                                 select s;
-            GeräteTypOptions = new SelectList(GeräteTypQuery.AsNoTracking(), "Id", "GerätTyp", selectedItem);
+                                 select new
+                                 {
+                                     gid = s.Id,
+                                     gbeschreibung = s.GerätTyp + " - " + s.Modell
+                                 };
+            GeräteTypOptions = new SelectList(GeräteTypQuery.AsNoTracking(), "gid", "gbeschreibung", selectedItem);
         }
         public void PopulateHausOptions(object selectedItem = null)
         {

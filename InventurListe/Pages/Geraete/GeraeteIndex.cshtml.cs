@@ -40,10 +40,14 @@ namespace InventurListe.Pages.Inventur
 
         public string PopulateGeräteTypNameBy(int Id)
         {
-            var GeräteTypName = (from GeräteTyp in _db.GeräteTyp
+            var GeräteTypName = from GeräteTyp in _db.GeräteTyp
                                  where GeräteTyp.Id == Id
-                                 select GeräteTyp.GerätTyp).FirstOrDefault();
-            return GeräteTypName.ToString();
+                                 select new
+                                 {
+                                     Gerätname = GeräteTyp.GerätTyp
+                                     + " - " + GeräteTyp.Modell
+                                 };
+            return GeräteTypName.FirstOrDefault().Gerätname.ToString();
         }
         public string PopulateHausNameBy(int Id)
         {
